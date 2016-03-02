@@ -40,4 +40,8 @@ public class Hash<T1,T2>{
         }
         return null;
     }
+
+    public int getNoOfContent(){
+        return noOfContent;
+    }
 }
