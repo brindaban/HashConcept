@@ -1,12 +1,10 @@
 public class Hash<T1,T2>{
     private Node<T1,T2>[] content;
-//    private T2[] keyStorage;
     int  noOfContent;
 
     public Hash() {
         noOfContent = 0;
         content =  new Node[10];
-//        keyStorage = (T2[]) new Object[10];
     }
 
     public int getIndex(T2 key){
@@ -14,8 +12,6 @@ public class Hash<T1,T2>{
     }
 
     public boolean addElementWithKey(T1 element, T2 key) {
-//        boolean permission = !Arrays.asList(keyStorage).contains(key);
-//        System.out.println(permission);
         int index = getIndex(key);
         Node<T1,T2> newNode = new Node<>(element,key,null);
         if (content[index]==null){
