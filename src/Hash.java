@@ -1,33 +1,43 @@
-import java.lang.reflect.Array;
-
-/**
- * Created by brindaba on 3/1/16.
- */
 public class Hash<T1,T2>{
-    private T1[] content;
+    private Node<T1,T2>[] content;
+//    private T2[] keyStorage;
     int  noOfContent;
 
     public Hash() {
-        content = (T1[]) new Object(10)
         noOfContent = 0;
+        content =  new Node[10];
+//        keyStorage = (T2[]) new Object[10];
     }
 
-    public int addElementWithKey(T1 element, T2 key) {
-//        int index = key ^ 5;
-//        if (index>=10){
-//            index = index % 10;
-//            content[index] = element;
-//        }
-//        else
-//            content[index] = element;
-//        return  noOfContent++;
+    public int getIndex(T2 key){
+        return (7^Math.abs(key.hashCode()))%10;
     }
 
-    public String getElementByKey(T2 key) {
-//        int index = key ^ 5;
-//        if(index>=10)
-//            index = index % 10;
-//        return  content[index];
+    public boolean addElementWithKey(T1 element, T2 key) {
+//        boolean permission = !Arrays.asList(keyStorage).contains(key);
+//        System.out.println(permission);
+        int index = getIndex(key);
+        Node<T1,T2> newNode = new Node<>(element,key,null);
+        if (content[index]==null){
+            content[index] = newNode;
+        }
+        else {
+            newNode.next =content[index];
+            content[index] = newNode;
+        }
+        noOfContent++;
+        return true;
+    }
 
+    public T1 getElementByKey(T2 key) {
+        int index = getIndex(key);
+        Node<T1, T2> currentNode = content[index];
+        while (currentNode != null) {
+            if (currentNode.key == key) {
+                return currentNode.element;
+            }
+            currentNode = currentNode.next;
+        }
+        return null;
     }
 }
