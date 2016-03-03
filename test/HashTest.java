@@ -12,7 +12,7 @@ public class HashTest {
     @Test
     public void testForAddMoreThanOneElementInMyHash(){
         Hash<String,Integer> myHashSet = new Hash<>();
-        myHashSet.addElementWithKey("Sayoni",12);
+        myHashSet.addElementWithKey("Silsila",12);
         myHashSet.addElementWithKey("Baban",23);
         Assert.assertEquals(2,myHashSet.getNoOfContent());
     }
@@ -20,25 +20,26 @@ public class HashTest {
     @Test
     public void testForAddingAElementForWhichCollisionWillOccur(){
         Hash<String,Integer> myHashSet = new Hash<>();
-        myHashSet.addElementWithKey("Hiya",5);
-        myHashSet.addElementWithKey("Sayoni",13);
-        myHashSet.addElementWithKey("Biman",22);
-        myHashSet.addElementWithKey("Hunu",11);
+        myHashSet.addElementWithKey("Mastani",5);
+        myHashSet.addElementWithKey("Silsila",13);
+        myHashSet.addElementWithKey("Brindaban",17);
+        myHashSet.addElementWithKey("Bepanha",22);
+        myHashSet.addElementWithKey("Hazare",11);
         Assert.assertEquals(myHashSet.getIndex(5),myHashSet.getIndex(11));
-        Assert.assertEquals(4,myHashSet.getNoOfContent());
+        Assert.assertEquals(5,myHashSet.getNoOfContent());
     }
 
     @Test
     public  void addADifferentValueWithSameKey(){
         Hash<String,Integer> myHashSet = new Hash<>();
-        myHashSet.addElementWithKey("Hiya",5);
-        myHashSet.addElementWithKey("Sayoni",13);
-        myHashSet.addElementWithKey("Biman",22);
-        Assert.assertEquals("Sayoni",myHashSet.getElementByKey(13));
-        myHashSet.addElementWithKey("Mandal",13);
-        Assert.assertEquals("Mandal",myHashSet.getElementByKey(13));
-        Assert.assertNotEquals("Sayoni",myHashSet.getElementByKey(13));
-//        Assert.assertEquals(3,myHashSet.getNoOfContent());
+        myHashSet.addElementWithKey("Mastani",5);
+        myHashSet.addElementWithKey("Silsila",13);
+        myHashSet.addElementWithKey("Bepanha",22);
+        Assert.assertEquals("Silsila",myHashSet.getElementByKey(13));
+        myHashSet.addElementWithKey("Bajirao",13);
+        Assert.assertEquals("Bajirao",myHashSet.getElementByKey(13));
+        Assert.assertNotEquals("Silsila",myHashSet.getElementByKey(13));
+        Assert.assertEquals(3,myHashSet.getNoOfContent());
     }
 
     @Test
@@ -63,13 +64,17 @@ public class HashTest {
     @Test
     public void testForGetElementByTheKeyWhileCollisionOccur(){
         Hash<String,Integer> myHashSet = new Hash<>();
-        myHashSet.addElementWithKey("Hiya",5);
-        myHashSet.addElementWithKey("Sayoni",13);
-        myHashSet.addElementWithKey("Biman",22);
-        myHashSet.addElementWithKey("Hunu",11);
+        myHashSet.addElementWithKey("Mastani",5);
+        myHashSet.addElementWithKey("Silsila",13);
+        myHashSet.addElementWithKey("Brindaban",17);
+        myHashSet.addElementWithKey("Bepanha",22);
+        myHashSet.addElementWithKey("Hazare",11);
         Assert.assertEquals(myHashSet.getIndex(5),myHashSet.getIndex(11));
-        Assert.assertEquals("Hiya",myHashSet.getElementByKey(5));
-        Assert.assertEquals("Hunu",myHashSet.getElementByKey(11));
+        Assert.assertEquals("Mastani",myHashSet.getElementByKey(5));
+        Assert.assertEquals("Hazare",myHashSet.getElementByKey(11));
+        Assert.assertEquals("Bepanha",myHashSet.getElementByKey(22));
+        Assert.assertEquals("Brindaban",myHashSet.getElementByKey(17));
+
 
     }
 
@@ -90,7 +95,7 @@ public class HashTest {
     @Test
     public void testForHashFunctionWhenCollisionOccurs(){
         Hash<String,Integer> myHashSet = new Hash<>();
-        Assert.assertEquals(myHashSet.getIndex(5),myHashSet.getIndex((11)));
+        Assert.assertEquals(myHashSet.getIndex(5),myHashSet.getIndex(11));
+        Assert.assertEquals(myHashSet.getIndex(11),myHashSet.getIndex(17));
     }
 }
-
